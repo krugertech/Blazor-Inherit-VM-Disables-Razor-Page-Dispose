@@ -1,0 +1,24 @@
+﻿@page "/"
+@using MvvmBlazor.Components;
+@inherits MvvmComponentBase<TestViewModel>
+@implements IDisposable
+
+<br /><br />
+<strong>Test Dipose</strong>
+<br /><br />
+1. Run in debug mode with breakpoints active on index.razor's dispose method AND the TestViewModel's dispose method.
+<br />
+2. Browse to the Counter page by using the left nav. This causes a page change and dispose to fire.
+<br />
+3. Notice that the index.razor's IDisposable.Dispose() method is entirely ignored and the breakpoint of the ViewModels dispose method is instead fired.
+<br />
+4. Now comment out the 3rd line of index.razor, disabling inheriting from the ViewModel and debug again.
+<br />
+5. Notice that now the index.razor's dispose method is fired.
+
+@code {
+    void IDisposable.Dispose()
+    {
+        // NOTE: as long as @inherits ... is uncommented, this event will not fire.
+    }
+}
